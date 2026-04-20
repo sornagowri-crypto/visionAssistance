@@ -1,0 +1,91 @@
+// android/app/build.gradle
+// ─────────────────────────────────────────────────────────────────────────────
+// Replace the contents of your android/app/build.gradle with this file.
+// ─────────────────────────────────────────────────────────────────────────────
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // Google services plugin (required for Firebase)
+    id "com.google.gms.google-services"
+    // Flutter Gradle plugin (must be last)
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    namespace "com.visionassistant.app"
+    compileSdk 36
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        // Application ID — must match what you registered in Firebase Console
+        applicationId "com.visionassistant.app"
+
+        // MLKit requires at least API 21
+        // Google Sign-In works best from API 21+
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
+
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            // For production, replace with your actual keystore config.
+            // See BUILD_INSTRUCTIONS.md for signing setup.
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Firebase BOM — manages all Firebase dependency versions
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    // Required for Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    // MultiDex support
+    implementation 'androidx.multidex:multidex:2.0.1'
+}

@@ -1,0 +1,54 @@
+name: vision_assistant
+description: AI-powered vision assistant for visually impaired users with real-time object recognition.
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ── Camera ──────────────────────────────────────────────────────────────────
+  camera: ^0.12.0+1
+  image_picker: ^1.1.0
+
+  # ── Firebase ─────────────────────────────────────────────────────────────────
+  firebase_core: ^4.7.0
+  cloud_firestore: ^6.3.0
+  firebase_storage: ^13.3.0
+  firebase_auth: ^6.4.0
+  google_sign_in: ^7.2.0
+
+  # ── AI / Vision ──────────────────────────────────────────────────────────────
+  http: ^1.2.1
+  google_mlkit_object_detection: ^0.15.1
+
+  # ── Accessibility ────────────────────────────────────────────────────────────
+  flutter_tts: ^4.0.2
+  speech_to_text: ^7.3.0
+  vibration: ^3.1.8
+
+  # ── Utilities ────────────────────────────────────────────────────────────────
+  connectivity_plus: 7.1.1
+  path_provider: ^2.1.3
+  intl: ^0.20.2
+  cached_network_image: ^3.3.1
+  permission_handler: ^12.0.1
+  uuid: ^4.4.0
+  shared_preferences: ^2.2.3
+  share_plus: ^13.0.0
+  url_launcher: ^6.3.1
+
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/

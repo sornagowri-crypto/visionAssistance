@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Info.plist additions for Vision Assistant
+  ─────────────────────────────────────────────────────────────────────────────
+  Add these keys to your ios/Runner/Info.plist file inside the <dict> tag.
+  The full Info.plist is managed by Xcode — do NOT replace the whole file.
+-->
+<plist version="1.0">
+<dict>
+    <!-- ─── Camera Permission ──────────────────────────────────────────── -->
+    <key>NSCameraUsageDescription</key>
+    <string>Vision Assistant needs camera access to identify objects and provide audio descriptions for visually impaired users.</string>
+
+    <!-- ─── Microphone Permission (voice commands) ─────────────────────── -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Vision Assistant uses the microphone so you can control scanning with voice commands like "Scan", "Repeat", and "Stop".</string>
+
+    <!-- ─── Speech Recognition Permission ─────────────────────────────── -->
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Vision Assistant uses speech recognition to listen for voice commands, enabling hands-free operation for visually impaired users.</string>
+
+    <!-- ─── Photo Library (optional — for picking saved images) ────────── -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Vision Assistant can scan images from your photo library.</string>
+
+    <!-- ─── Google Sign-In URL Scheme ──────────────────────────────────── -->
+    <!--
+    IMPORTANT: Replace REVERSED_CLIENT_ID with the value from your
+    GoogleService-Info.plist file (the REVERSED_CLIENT_ID field).
+    -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>REVERSED_CLIENT_ID_FROM_GOOGLESERVICE_INFO_PLIST</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- ─── App Transport Security (allow Firebase / API traffic) ──────── -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>generativelanguage.googleapis.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <false/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+</dict>
+</plist>
