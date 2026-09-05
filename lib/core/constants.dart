@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 // ── API Keys ──────────────────────────────────────────────────────────────────
 // TODO: Replace with your Gemini API key.
 // Get a FREE key at: https://aistudio.google.com/app/apikey
-const String kGeminiApiKey = 'YOUR_GEMINI_API_KEY_HERE';
+const String kGeminiApiKey = 'AIzaSyD36R4RbXNpqm4TFqHKGhsqQzP7uZDWKl8';
 
 // ── Gemini API ────────────────────────────────────────────────────────────────
 const String kGeminiBaseUrl =

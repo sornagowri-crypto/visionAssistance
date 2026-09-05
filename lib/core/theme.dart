@@ -14,7 +14,6 @@ ThemeData buildAppTheme() {
 
     // ── Color Scheme ──────────────────────────────────────────────────────────
     colorScheme: const ColorScheme.dark(
-      background:   kColorBackground,
       surface:      kColorSurface,
       primary:      kColorPrimary,
       onPrimary:    Colors.black,
@@ -22,7 +21,6 @@ ThemeData buildAppTheme() {
       onSecondary:  Colors.black,
       error:        kColorError,
       onError:      Colors.black,
-      onBackground: kColorTextPrimary,
       onSurface:    kColorTextPrimary,
     ),
 

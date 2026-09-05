@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../core/constants.dart';
 import '../core/services/firebase_service.dart';
@@ -47,15 +48,26 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 
   void _navigationPage() {
-    final user = FirebaseService.instance.currentUser;
-    
-    // Smooth transition to next screen
     if (!mounted) return;
-    
+
+    Widget nextScreen;
+
+    // On web: skip Firebase login — go straight to CameraScreen
+    if (kIsWeb) {
+      nextScreen = const CameraScreen();
+    } else {
+      try {
+        final user = FirebaseService.instance.currentUser;
+        nextScreen = user != null ? const CameraScreen() : const LoginScreen();
+      } catch (e) {
+        debugPrint('Firebase not available, skipping auth check: $e');
+        nextScreen = const CameraScreen();
+      }
+    }
+
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => 
-            user != null ? const CameraScreen() : const LoginScreen(),
+        pageBuilder: (context, animation, secondaryAnimation) => nextScreen,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },

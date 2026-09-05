@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision Assistant - Patent Specification</title>
+<style>
+  @page {
+    size: letter;
+    margin: 20mm 20mm 20mm 20mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #111111;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-box {
+    border: 2px solid #000;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+    background-color: #fcfcfc;
+  }
+
+  .doc-type {
+    font-size: 14pt;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #222;
+  }
+
+  .title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin: 10px 0;
+  }
+
+  .meta-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    font-size: 10pt;
+    text-align: left;
+  }
+
+  .meta-table td {
+    padding: 4px 8px;
+    border-top: 1px solid #ddd;
+  }
+
+  .meta-label {
+    font-weight: bold;
+    width: 25%;
+  }
+
+  h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 3px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    text-align: justify;
+    text-indent: 0;
+    margin-bottom: 10px;
+  }
+
+  ul, ol {
+    margin-top: 5px;
+    margin-bottom: 12px;
+    padding-left: 25px;
+  }
+
+  li {
+    margin-bottom: 5px;
+    text-align: justify;
+  }
+
+  .diagram-box {
+    border: 1px dashed #444;
+    background: #f9f9f9;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    line-height: 1.2;
+    margin: 15px 0;
+    overflow-x: auto;
+  }
+
+  .code-snippet {
+    background: #f4f4f4;
+    border-left: 3px solid #333;
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9.5pt;
+    margin: 10px 0;
+  }
+
+  .claim-item {
+    margin-bottom: 12px;
+    text-align: justify;
+    padding-left: 20px;
+    text-indent: -20px;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <div class="doc-type">PATENT SPECIFICATION DOCUMENT</div>
+  <div class="title">VISION ASSISTANT — AN ACCESSIBLE AI-POWERED ASSISTIVE MOBILE SYSTEM WITH REAL-TIME MULTIMODAL SCENE/OBJECT RECOGNITION, DYNAMIC VOICE INTERACTION, ON-DEVICE FAILOVER, AND TACTILE FEEDBACK FOR VISUALLY IMPAIRED USERS</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Technical Field:</td>
+      <td>Assistive Technology / Computer Vision / Multimodal AI</td>
+      <td class="meta-label">Platform:</td>
+      <td>Flutter Cross-Platform Mobile Application</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Core Models:</td>
+      <td>Google Gemini Vision LMM & Google MLKit Edge Engine</td>
+      <td class="meta-label">Date of Filing:</td>
+      <td>August 11, 2026</td>
+    </tr>
+  </table>
+</div>
+
+<h2>1. FIELD OF INVENTION</h2>
+<p>
+The present invention relates generally to computer vision, artificial intelligence, assistive technology for visually impaired persons, mobile user interface design, and human-computer interaction (HCI). More specifically, the invention relates to an accessibility-centric, hands-free mobile platform capable of capturing camera feed frames, performing hybrid edge-cloud multimodal vision analysis, delivering real-time audio and tactile feedback, enabling continuous voice command processing, and operating seamlessly across connected and offline environments.
+</p>
+
+<h2>2. BACKGROUND OF INVENTION</h2>
+<p>
+Visual impairment affects hundreds of millions of people worldwide. Traditional visual assistance aids range from conventional canes and guide dogs to modern digital smartphone utilities. However, conventional digital assistive tools present significant technical limitations:
+</p>
+<ul>
+  <li><strong>Superficial Classification:</strong> Existing visual identification mobile applications rely on basic object detection or optical character recognition (OCR) models that produce raw, unstructured labels (e.g., "chair", "bottle", "book") without providing detailed contextual context, aesthetic descriptions, functional use, or physical safety warnings.</li>
+  <li><strong>Connectivity Dependency:</strong> Most generative AI and cloud vision services fail completely when internet access is degraded or unavailable, leaving visually impaired users without aid in low-connectivity or emergency situations.</li>
+  <li><strong>Complex Touch Interfaces:</strong> Standard mobile application interfaces depend heavily on precise visual layout navigation and complex touch gestures, posing high cognitive load and physical barriers for individuals with severe visual impairment or blindness.</li>
+  <li><strong>Lack of Synchronized Multi-Sensory Feedback:</strong> Conventional systems lack unified, multi-sensory feedback loops that harmonize speech synthesis, distinct tactile vibration signatures, and continuous hands-free voice control.</li>
+  <li><strong>Inaccessible Configuration:</strong> User profile management and emergency contact configuration in existing mobile utilities require manual keyboard input and visual form navigation, rendering initial app configuration difficult for target users.</li>
+</ul>
+<p>
+There exists an urgent need for an intelligent, robust, hands-free assistive technology platform that addresses these shortcomings through structured multimodal scene reasoning, edge-cloud resiliency, continuous voice-driven control, and intuitive sensory feedback.
+</p>
+
+<h2>3. OBJECTIVES OF INVENTION</h2>
+<p>The primary objectives of the present invention are to:</p>
+<ol>
+  <li><strong>Provide Rich Multimodal Scene Perception:</strong> Utilize Generative Artificial Intelligence (Google Gemini Vision API) to extract and articulate structured object breakdowns comprising specific object names, detailed physical appearance (color, shape, artwork, cover design), practical usage descriptions, and critical physical safety cautions.</li>
+  <li><strong>Ensure Offline Operational Resiliency:</strong> Implement an automatic network connection monitoring system that seamlessly fails over to on-device edge machine learning (Google MLKit Object Detection) in offline environments.</li>
+  <li><strong>Enable Fully Hands-Free Voice Control:</strong> Provide an "Always-On" voice command listener equipped with continuous auto-restarting capabilities, supporting localized voice triggers ("Scan", "Repeat", "Stop", "History", "Share") without requiring visual touch interaction.</li>
+  <li><strong>Deliver Distinct Tactile/Haptic Signals:</strong> Incorporate a multi-pattern vibrational feedback engine that maps specific tactile pulse sequences to camera state transitions (e.g., camera ready, picture captured, analysis complete, error encountered).</li>
+  <li><strong>Facilitate Voice-Guided Profile Setup:</strong> Offer an interactive voice interview engine that verbally queries users and populates profile fields (name, emergency contacts, medical notes) using speech recognition.</li>
+  <li><strong>Provide Emergency & Direct Contact Integration:</strong> Enable one-touch or hands-free voice sharing of current visual scan results directly to configured emergency contacts via native messaging protocols.</li>
+  <li><strong>Ensure Maximum Visual Accessibility:</strong> Implement an accessibility-first visual layout boasting ultra-high contrast (vivid yellow #FFD600 on deep black #0A0A0A), oversized tap targets (minimum 112px radius), and enlarged typography.</li>
+</ol>
+
+<h2>4. SUMMARY OF INVENTION</h2>
+<p>
+The present invention discloses an accessible, AI-powered mobile assistive framework—termed <strong>Vision Assistant</strong>—configured to aid visually impaired individuals in perceiving and navigating their physical environment.
+</p>
+<p>
+The system comprises:
+</p>
+<ul>
+  <li>A <strong>Live Camera Preview Engine</strong> operating in full-screen mode with automated lifecycle initialization;</li>
+  <li>A <strong>Hybrid Edge-Cloud Vision Pipeline</strong> featuring a cloud-based Large Multimodal Model (LMM) analysis module and an on-device Machine Learning (ML) edge fallback module;</li>
+  <li>A <strong>Structured Prompt & Parsing System</strong> that constrains generative output into distinct semantic fields (<code>OBJECT</code>, <code>APPEARANCE</code>, <code>USE</code>, <code>SAFETY</code>);</li>
+  <li>An <strong>Accessibility Speech Synthesis Engine</strong> with custom speech rates, pitch modulation, and spoken text formatting;</li>
+  <li>A <strong>Multi-Pattern Haptic Feedback Engine</strong> providing tactile state confirmation;</li>
+  <li>A <strong>Continuous Voice Command Module</strong> running speech recognition with automated session resuscitation;</li>
+  <li>A <strong>Voice Interview Module</strong> for interactive user profile creation; and</li>
+  <li>A <strong>Cloud Synchronization & Emergency Integration Layer</strong> using Firebase Authentication, Firestore real-time databases, Cloud Storage, and native SMS protocol handlers.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>5. DETAILED DESCRIPTION OF INVENTION</h2>
+
+<h3>5.1 System Architecture Overview</h3>
+<div class="diagram-box">
+                  +-----------------------------------+
+                  |        VISUALLY IMPAIRED USER      |
+                  +-----------------------------------+
+                    ^     |             ^         ^
+    Spoken Audio /  |     | Voice       | Tactile | High-Contrast
+    TTS Description |     | Commands    | Haptics | UI Display
+                    v     v             |         |
++-----------------------------------------------------------------+
+|                        MOBILE CLIENT                            |
+|                                                                 |
+|  +------------------------+     +----------------------------+  |
+|  | Camera Screen &        |     | Continuous Voice Command   |  |
+|  | Frame Buffer Capture   |     | Service & Listener Loop    |  |
+|  +-----------+------------+     +-------------+--------------+  |
+|              |                                |                 |
+|              v                                v                 |
+|  +-------------------------------------------------------+      |
+|  |           Network & Connectivity Evaluator            |      |
+|  +-----------------------+-------------------------------+      |
+|                          |                                      |
+|            [Online]      v      [Offline]                       |
+|         +----------------+----------------+                     |
+|         |                                 |                     |
+|         v                                 v                     |
+|  +----------------------+      +--------------------------+     |
+|  | Gemini Vision API    |      | On-Device MLKit Engine   |     |
+|  | (Generative LMM)     |      | (Edge Object Detector)   |     |
+|  +----------+-----------+      +----------+---------------+     |
+|             |                             |                     |
+|             +--------------+--------------+                     |
+|                            |                                    |
+|                            v                                    |
+|  +-------------------------------------------------------+      |
+|  |  Structured Parser & TTS/Haptics Output Coordinator    |      |
+|  +-----------------------+-------------------------------+      |
++--------------------------|--------------------------------------+
+                           |
+                           v
+           +-------------------------------+
+           |    Firebase Cloud Database    |
+           |    & Emergency Contact SMS    |
+           +-------------------------------+
+</div>
+
+<h3>5.2 Subsystems & Technical Details</h3>
+
+<p><strong>1. Live Camera Preview Engine (<code>camera_screen.dart</code>):</strong> Automatically initializes device camera upon launch in full-screen aspect ratio. Evaluates real-time permissions on Android/iOS devices (<code>Permission.camera</code>). Captures raw high-resolution frame buffers (<code>ImageFormatGroup.jpeg</code>) on tap or voice trigger.</p>
+
+<p><strong>2. Structured Gemini Vision Prompting & Parsing Engine (<code>gemini_service.dart</code>, <code>constants.dart</code>):</strong> When online, the high-resolution frame buffer is converted to Base64 payload and dispatched via REST HTTP POST to the Google Gemini Vision LMM endpoint. The engine employs an accessibility-calibrated system prompt:</p>
+<div class="code-snippet">
+OBJECT: [Name of the main object]<br>
+APPEARANCE: [Detailed description of colors, shape, pattern, cover design, artwork]<br>
+USE: [Primary utility in 1-2 sentences]<br>
+SAFETY: [Identified hazards or "No safety concerns"]
+</div>
+<p>The response is parsed via Regular Expression matchers (<code>RegExp(r'OBJECT:\s*(.+)'))</code> into a strongly typed data model (<code>GeminiResult</code>), synthesizing natural spoken descriptions: <em>"I can see [Object]. It [Appearance]. It is used for [Use]. Safety note: [Safety]."</em></p>
+
+<p><strong>3. On-Device Offline Machine Learning Fallback (<code>mlkit_service.dart</code>):</strong> If network connection test (<code>Connectivity().checkConnectivity()</code>) returns offline status, the pipeline routes the frame buffer to localized Google MLKit Object Detector (<code>google_mlkit_object_detection</code>), filtering classification labels with confidence scores &gt; 0.5 and delivering audio offline announcements.</p>
+
+<p><strong>4. Continuous Voice Command Manager (<code>voice_command_service.dart</code>):</strong> Provides hands-free control via <code>speech_to_text</code> with extended listening windows (45s max, 15s pause tolerance). Integrates a self-healing auto-restart timer (300ms) triggered on speech status <code>done</code> or <code>notListening</code> to guarantee continuous background operation. Classifies triggers into: "Scan", "Repeat", "Stop", "History", and "Share".</p>
+
+<p><strong>5. Tactile Vibration Signal Engine (<code>vibration_service.dart</code>):</strong> Encodes system states into distinct haptic patterns (durations in milliseconds):</p>
+<ul>
+  <li><strong>Camera Ready:</strong> <code>[0, 80]</code> (1 short pulse)</li>
+  <li><strong>Image Captured:</strong> <code>[0, 80, 100, 80]</code> (2 short pulses)</li>
+  <li><strong>Description Ready:</strong> <code>[0, 400]</code> (1 long pulse)</li>
+  <li><strong>System Error:</strong> <code>[0, 80, 50, 80, 50, 80]</code> (3 rapid pulses)</li>
+</ul>
+
+<p><strong>6. Accessibility Text-to-Speech Engine (<code>tts_service.dart</code>):</strong> Built upon <code>flutter_tts</code>, configured with speech rate <code>0.45</code> (reduced speed for clarity) and pitch <code>1.0</code>. Automatically selects natural Google neural speech engines (<code>en-US</code>).</p>
+
+<p><strong>7. Voice-Guided Interactive Profile Setup (<code>profile_screen.dart</code>):</strong> Features an automated voice interview assistant that sequentially queries five critical fields (Name, Age, Emergency Contact, Emergency Phone, Medical Notes) via speech synthesis and saves output to Firebase Firestore.</p>
+
+<p><strong>8. Direct Emergency Sharing Module (<code>camera_screen.dart</code>):</strong> Interrogates saved user profile for emergency contact phone numbers and constructs direct platform SMS URI intents (<code>sms:PHONE?body=Scan Result</code>) for single-tap or voice-activated immediate emergency location/object dispatch.</p>
+
+<div class="page-break"></div>
+
+<h2>6. WE CLAIM</h2>
+
+<p><strong>What is claimed is:</strong></p>
+
+<div class="claim-item">
+<strong>1. A system for assisting visually impaired users through real-time multimodal visual perception, comprising:</strong><br>
+a camera capture module configured to capture image frame buffers of an surrounding physical environment;<br>
+a network connectivity module configured to evaluate network availability in real-time;<br>
+a hybrid vision processing pipeline comprising a cloud generative multimodal artificial intelligence (AI) engine and an on-device machine learning (ML) edge detection engine, wherein captured image frame buffers are dynamically routed to said cloud AI engine when online and to said on-device ML edge detection engine when offline;<br>
+an accessibility speech synthesizer configured to convert output from said hybrid vision processing pipeline into spoken audio descriptions; and<br>
+a haptic feedback module configured to output distinct vibration pulse sequences corresponding to real-time operational state transitions of the system.
+</div>
+
+<div class="claim-item">
+<strong>2. The system of claim 1,</strong> wherein said cloud generative multimodal AI engine is configured to execute a structured system prompt that constrains visual analysis into separate semantic output components comprising an OBJECT identification component, an APPEARANCE component detailing visual pattern and physical texture, a USE component describing functional utility, and a SAFETY component identifying physical hazards.
+</div>
+
+<div class="claim-item">
+<strong>3. The system of claim 1,</strong> wherein said hybrid vision processing pipeline automatically formats generated descriptions into a standardized spoken sentence template optimized for auditory comprehension.
+</div>
+
+<div class="claim-item">
+<strong>4. The system of claim 1,</strong> further comprising a continuous voice command listener configured to analyze user voice input during active camera operation, match speech input against predetermined voice command triggers comprising scan, repeat, stop, history, and share, and automatically restart speech recognition listening sessions via an automated timer loop upon session timeout or closure.
+</div>
+
+<div class="claim-item">
+<strong>5. The system of claim 1,</strong> wherein said haptic feedback module stores distinct vibrational pulse duration arrays comprising a single short pulse for camera ready state, a double short pulse for image capture state, a single long pulse for description ready state, and a triple rapid pulse for system error state.
+</div>
+
+<div class="claim-item">
+<strong>6. The system of claim 1,</strong> further comprising a voice interview module for user profile configuration, wherein said module sequentially synthesizes spoken questions for user profile fields, listens for verbal spoken responses, parses said responses, and saves user profile data to a database without requiring manual visual touch input.
+</div>
+
+<div class="claim-item">
+<strong>7. The system of claim 1,</strong> further comprising a direct emergency dispatch module configured to extract emergency contact details from a user profile and generate an automated Short Message Service (SMS) URI payload containing the last visual description output for immediate transmission.
+</div>
+
+<div class="claim-item">
+<strong>8. A method for providing real-time scene description for a visually impaired user on a mobile computing device, the method comprising:</strong><br>
+initializing a camera preview upon application launch;<br>
+receiving a user initiation trigger via a physical tap gesture or a spoken voice command;<br>
+capturing an image frame from the camera preview;<br>
+determining connectivity status of the mobile device;<br>
+routing the captured image frame to a cloud-based Generative Vision LMM when connected, or to an on-device ML object detector when disconnected;<br>
+parsing results into structured object identity, visual detail, usage, and safety categories;<br>
+generating a tactile vibration signal corresponding to completion of analysis; and<br>
+vocalizing the structured results using text-to-speech synthesis at a reduced speech rate.
+</div>
+
+<div class="claim-item">
+<strong>9. The method of claim 8,</strong> further comprising maintaining an always-on continuous voice listening loop that automatically detects spoken keywords while ignoring ambient noise, and auto-resuscitates listening sessions upon transient network or timeout errors.
+</div>
+
+<div class="claim-item">
+<strong>10. An accessible graphical user interface for visual assistant software, comprising:</strong><br>
+a high-contrast dark visual color palette featuring a near-black background (#0A0A0A) and vivid yellow primary elements (#FFD600);<br>
+a full-screen camera preview display;<br>
+an oversized circular scan trigger button having a minimum target dimension of 112 density-independent pixels; and<br>
+a pulsing voice microphone visual indicator synchronized with background voice command listening states.
+</div>
+
+</body>
+</html>

@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:camera/camera.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -81,14 +82,16 @@ class _CameraScreenState extends State<CameraScreen>
   // ── Camera initialisation ─────────────────────────────────────────────────────
 
   Future<void> _initCamera() async {
-    // Request camera permission
-    final status = await Permission.camera.request();
-    if (status.isDenied || status.isPermanentlyDenied) {
-      if (mounted) {
-        setState(() => _cameraPermissionDenied = true);
+    // On web, skip permission_handler (not supported) and go straight to camera
+    if (!kIsWeb) {
+      final status = await Permission.camera.request();
+      if (status.isDenied || status.isPermanentlyDenied) {
+        if (mounted) {
+          setState(() => _cameraPermissionDenied = true);
+        }
+        _tts.announce('Camera permission is required. Please enable it in settings.');
+        return;
       }
-      _tts.announce('Camera permission is required. Please enable it in settings.');
-      return;
     }
 
     try {
@@ -112,7 +115,7 @@ class _CameraScreenState extends State<CameraScreen>
           _cameraInitialised = true;
           _status = ScanStatus.cameraReady;
         });
-        await _vibration.cameraReady();
+        if (!kIsWeb) await _vibration.cameraReady();
         await _tts.announce('Camera ready. Tap the SCAN button or say "Scan" to identify an object.');
       }
     } catch (e) {
@@ -165,6 +168,18 @@ class _CameraScreenState extends State<CameraScreen>
 
   Future<void> _captureAndDescribe() async {
     if (!_cameraInitialised || _isScanning || _controller == null) return;
+
+    // On web, file-based capture is not supported — show a message
+    if (kIsWeb) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Scanning is only supported on Android/iOS. Please use the mobile app.'),
+          backgroundColor: Colors.orange,
+          duration: Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
 
     _tts.announce('Scanning...'); // Universal feedback (Button & Voice)
 
@@ -540,8 +555,8 @@ class _CameraScreenState extends State<CameraScreen>
                   icon: CircleAvatar(
                     radius: 16,
                     backgroundColor: kColorPrimary.withOpacity(0.2),
-                    foregroundImage: FirebaseService.instance.photoUrl != null
-                        ? NetworkImage(FirebaseService.instance.photoUrl!)
+                    foregroundImage: _safePhotoUrl() != null
+                        ? NetworkImage(_safePhotoUrl()!)
                         : null,
                     child: const Icon(
                       Icons.person,
@@ -607,6 +622,15 @@ class _CameraScreenState extends State<CameraScreen>
     if (mounted) setState(() {});
   }
 
+  // ── Web-safe Firebase helpers ─────────────────────────────────────────────────
+  String? _safePhotoUrl() {
+    try { return FirebaseService.instance.photoUrl; } catch (_) { return null; }
+  }
+
+  String _safeDisplayName() {
+    try { return FirebaseService.instance.displayName; } catch (_) { return 'User'; }
+  }
+
   void _showUserMenu() {
     showModalBottomSheet(
       context: context,
@@ -631,14 +655,14 @@ class _CameraScreenState extends State<CameraScreen>
             CircleAvatar(
               radius: 36,
               backgroundColor: kColorPrimary.withOpacity(0.2),
-              foregroundImage: FirebaseService.instance.photoUrl != null
-                  ? NetworkImage(FirebaseService.instance.photoUrl!)
+              foregroundImage: _safePhotoUrl() != null
+                  ? NetworkImage(_safePhotoUrl()!)
                   : null,
               child: const Icon(Icons.person, color: kColorPrimary, size: 36),
             ),
             const SizedBox(height: 12),
             Text(
-              FirebaseService.instance.displayName,
+              _safeDisplayName(),
               style: const TextStyle(
                 fontSize: kFontSizeBody,
                 fontWeight: FontWeight.w700,

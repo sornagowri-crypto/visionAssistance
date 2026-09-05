@@ -34,12 +34,12 @@ class FirebaseService {
     try {
       // ✅ CORRECT MODERN SIGN-IN FLOW (v7.0+)
       await _googleSignIn.initialize(serverClientId: kGoogleWebClientId);
-      final GoogleSignInAccount? googleUser = await _googleSignIn.authenticate();
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
 
       if (googleUser == null) return null; // cancelled
 
       final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+          googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: null, // Use null if accessToken isn't needed for basic auth
